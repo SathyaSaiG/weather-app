@@ -123,6 +123,3 @@ Test results will appear in `build/reports/tests/test/index.html`.
 
 MIT License — see [LICENSE](LICENSE) file for details.
 
----
-
-
