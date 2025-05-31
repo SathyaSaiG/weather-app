@@ -1,0 +1,56 @@
+/*
+ * build.gradle for Weather App
+ *
+ * This build script configures the Weather App project, including:
+ * - Java version and application plugin for running the app
+ * - Shadow plugin for building a self-contained (fat) JAR with all dependencies
+ * - Dependencies for JSON parsing (Gson), unit testing (JUnit Jupiter), and mocking (Mockito)
+ *
+ * Key dependencies:
+ * - Gson: For JSON parsing
+ * - org.json: For additional JSON utilities
+ * - JUnit Jupiter: For unit testing
+ * - Mockito: For mocking in tests
+ *
+ * Usage:
+ *   ./gradlew build         # Build the project and regular JAR
+ *   ./gradlew test          # Run tests
+ *   ./gradlew run           # Run the application (handles dependencies automatically)
+ *   ./gradlew shadowJar     # Build a fat JAR with all dependencies included
+ *
+ * Running the fat JAR:
+ *   java -jar build/libs/weather-app-1.0-all.jar
+ *
+ * Notes:
+ * - The fat JAR is recommended for distribution and ensures all dependencies are included.
+ * - See README.md for more details and example usage.
+ */
+
+plugins {
+    id 'java'
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
+}
+
+group 'com.sathyasaig'
+version '1.0'
+
+application {
+    mainClass = 'com.sathyasaig.weatherapp.Main'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'com.google.code.gson:gson:2.13.1'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
+    testImplementation 'org.mockito:mockito-core:5.12.0'
+    testImplementation 'org.mockito:mockito-inline:5.2.0'
+}
+
+test {
+    useJUnitPlatform()
+}
